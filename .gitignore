@@ -1,0 +1,26 @@
+# Python/Django
+venv/
+.venv/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+*.env
+*.sqlite3  # If using SQLite
+local_settings.py
+settings.py  # If it contains sensitive data like api_key
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Logs and temporary files
+*.log
+*.pid
+*.cache
+
+# IDE files
+.idea/
+*.swp
