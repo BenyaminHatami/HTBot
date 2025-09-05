@@ -60,7 +60,7 @@ def check_candles_and_open():
         sl_price = price * Decimal(1 + sl_percentage / 100)
         tp_price = price * Decimal(1 - tp_percentage / 100)
 
-        time.sleep(0.2)
+        time.sleep(1)
 
         print("p" + f'{price}')
         print("sl_price" + f'{Decimal(sl_price)}')
@@ -73,7 +73,7 @@ def check_candles_and_open():
             quantity=quantity
         )
 
-        time.sleep(0.2)
+        time.sleep(1)
 
         remote_id = position_manager.place_sltp(
             coin=Coin.doge_futures.value,
@@ -103,7 +103,7 @@ def check_candles_and_open():
         sl_price = price * Decimal(1 - sl_percentage / 100)
         tp_price = price * Decimal(1 + tp_percentage / 100)
 
-        time.sleep(0.2)
+        time.sleep(1)
 
         position_manager.place_sltp(
             coin=Coin.doge_futures.value,
@@ -113,7 +113,7 @@ def check_candles_and_open():
             quantity=quantity
         )
 
-        time.sleep(0.2)
+        time.sleep(1)
 
         remote_id = position_manager.place_sltp(
             coin=Coin.doge_futures.value,
@@ -155,5 +155,5 @@ def check_position():
 @shared_task
 def my_task():
     check_position()
-    time.sleep(0.2)
+    time.sleep(1)
     check_candles_and_open()
