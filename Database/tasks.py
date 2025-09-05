@@ -125,6 +125,8 @@ def check_candles_and_open():
 def check_position():
     position_manager = PositionManager.objects.get()
 
+    if position_manager.remote_id is None:
+        return
     changed = position_manager.modify_sltp(
         coin=Coin.doge_futures.value,
         remote_id=position_manager.remote_id,
