@@ -1,5 +1,6 @@
 import datetime
 from decimal import Decimal
+import time
 
 from Database.models import PositionManager, Candle, Coin, SideFutures, PlanType, PositionDirection
 from ExchangeAPI.APICallManager import Interval, CandleAgent
@@ -59,6 +60,8 @@ def check_candles_and_open():
         sl_price = price * Decimal(1 + sl_percentage / 100)
         tp_price = price * Decimal(1 - tp_percentage / 100)
 
+        time.sleep(0.2)
+
         print("p" + f'{price}')
         print("sl_price" + f'{Decimal(sl_price)}')
         print("tp_price" + f'{Decimal(tp_price)}')
@@ -69,6 +72,8 @@ def check_candles_and_open():
             direction=PositionDirection.short.value,
             quantity=quantity
         )
+
+        time.sleep(0.2)
 
         remote_id = position_manager.place_sltp(
             coin=Coin.doge_futures.value,
@@ -97,6 +102,9 @@ def check_candles_and_open():
         price = position_manager.get_price(coin=Coin.doge_futures.value)
         sl_price = price * Decimal(1 - sl_percentage / 100)
         tp_price = price * Decimal(1 + tp_percentage / 100)
+
+        time.sleep(0.2)
+
         position_manager.place_sltp(
             coin=Coin.doge_futures.value,
             plan_type=PlanType.tp.value,
@@ -104,6 +112,8 @@ def check_candles_and_open():
             direction=PositionDirection.long.value,
             quantity=quantity
         )
+
+        time.sleep(0.2)
 
         remote_id = position_manager.place_sltp(
             coin=Coin.doge_futures.value,
@@ -145,4 +155,5 @@ def check_position():
 @shared_task
 def my_task():
     check_position()
+    time.sleep(0.2)
     check_candles_and_open()
